@@ -1,0 +1,17 @@
+<h2 class="guesttext">Sighn into a guest book here!</h2>
+<h3>Also leave me a message.</h3>
+{{#if errors.length}}
+    <p>Can not create a new guest because:</p>
+    <ul>
+        {{#each errors }}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
+<form action="" method="post">
+  <input type="text" placeholder="Name" name="name" value="{{name}}" />
+  <input type="text" placeholder="Surname" name="surname" value="{{surname}}"/>
+  <input type="text" placeholder="Your message" name="message" value="{{message}}"/>
+  <input type="submit" value="submit" />
+
+</form>

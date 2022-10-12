@@ -1,0 +1,16 @@
+<h2>Create new affirmation</h2>
+<h3></h3>
+{{#if errors.length}}
+    <p>Can not create a new affirmation because:</p>
+    <ul>
+        {{#each errors }}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+{{/if}}
+<form action="" method="post">
+  <input type="date" placeholder="Date" name="date" value="{{date}}" />
+  <input type="text" placeholder="Note" name="note" value="{{note}}"/>
+  <input type="submit" value="submit" />
+
+</form>

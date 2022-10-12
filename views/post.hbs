@@ -1,0 +1,22 @@
+<h1>POST</h1>
+<div>
+    Id: {{post.id}}
+</div>
+<div>
+    Title: {{post.title}}
+</div>
+<div>
+    Text: {{post.mainText}}
+</div> 
+{{#if isLoggedIn}}
+<div>
+    <a href="/update-post/{{post.id}}">Update</a>
+</div>
+{{/if}}
+{{#if isLoggedIn}}
+<div>
+    <form action="/delete-post/{{post.id}}" method="post">
+        <input type="submit" value="Delete">
+    </form>
+</div>
+{{/if}}

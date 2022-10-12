@@ -1,0 +1,25 @@
+{{#if dbError}}
+    <p>Can not display the page now.</p>
+{{else}}
+{{#if guests.length}}
+        <p>We have guests! Nuber of guests: {{guests.length}}</p>
+
+        <ul>
+            {{#each guests}}
+                <li>
+                    <a href="/guests/{{id}}">{{name}}</a>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>We don't have guests!</p>
+{{/if}}
+
+{{/if}}
+
+
+
+
+
+
+<a href="/create-guest">Add a new guest</a>

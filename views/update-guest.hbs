@@ -1,0 +1,22 @@
+<h1>Update post</h1>
+{{#if validationErrors.length}}
+  <p>Can not update the post because:</p>
+  <ul>
+    {{#each validationErrors}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+<form method="post">
+  <div>
+    <input type="text" name="name" value="{{guest.name}}" />
+  </div>
+  <div>
+    <input type="text" name="surname" value="{{guest.surname}}" />
+  </div>
+  <div>
+    <input type="text" name="message" value="{{guest.message}}" />
+  </div>
+  
+  <input type="submit" value="Update" />
+</form>

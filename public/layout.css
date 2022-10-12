@@ -1,0 +1,86 @@
+body {
+  background-color: #f3f2ed;
+  margin: 50pt;
+}
+.logo {
+  width: 730pt;
+  padding-left: 310pt;
+  padding-bottom: 50pt;
+}
+
+.navbar-section a {
+  color: #b79584;
+  padding-left: 135pt;
+}
+
+.footer-graphic {
+  width: 900pt;
+  padding-left: 100pt;
+  margin-top: 100pt;
+}
+
+.horizontal-picture {
+  width: 1030pt;
+  margin-top: 20pt;
+  margin-bottom: 50pt;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 0px;
+}
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+  padding-top: 100pt;
+}
+
+.profile-picture {
+  width: 300pt;
+  height: 370pt;
+}
+
+.main-text {
+  height: 300pt;
+  width: 500pt;
+}
+
+.login-picture {
+  width: 1360px;
+  margin-top: 20pt;
+}
+
+.login-box {
+  background-color: #5a5b59;
+  width: 400pt;
+  height:200pt ;
+  border-radius: 2em;
+  padding: 5em;
+  padding-top: 6em;
+  opacity: 0.8;
+  position: absolute;
+  top: 440pt;
+  left: 330pt;
+}
+
+.create-text {
+  margin-top: 20pt;
+}
+
+.contact-picture {
+  height: 530pt;
+  justify-content: center;
+  margin-top: 100pt;
+  padding-left: 20pt;
+}
+
+.contactBottom-picture{
+  width: 500pt;
+  height: 300pt;
+}
+

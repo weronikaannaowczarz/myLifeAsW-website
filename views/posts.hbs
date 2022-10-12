@@ -1,0 +1,26 @@
+<h1>Posts</h1>
+
+{{#if dbError}}
+    <p>Can't display the page now, try maybe leter!</p>
+{{else}}
+    {{#if posts.length}}
+        <p>We have posts {{posts.length}}</p>
+
+        <ul>
+            {{#each posts}}
+                <li>
+                    <a href="/posts/{{id}}">{{title}}</a>
+    
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>We dont have any posts yet</p>
+    {{/if}}
+
+
+{{/if}}
+
+
+
+

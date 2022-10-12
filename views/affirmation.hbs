@@ -1,0 +1,21 @@
+<h1>Todays affirmation</h1>
+
+<div> Id: {{affirmation.id}}</div>
+<div>Date: {{affirmation.date}}</div>
+<div>
+  Note:
+  {{affirmation.note}}
+</div>
+
+{{#if isLoggedIn}}
+  <div>
+    <a href="/update-affirmation/{{affirmation.id}}">Update</a>
+  </div>
+{{/if}}
+{{#if isLoggedIn}}
+  <div>
+    <form action="/delete-affirmation/{{affirmation.id}}" method="post">
+      <input type="submit" value="Delete" />
+    </form>
+  </div>
+{{/if}}

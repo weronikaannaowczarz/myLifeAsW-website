@@ -1,0 +1,19 @@
+<h1>Update quote</h1>
+{{#if validationErrors.length}}
+  <p>Can not update the quote because:</p>
+  <ul>
+    {{#each validationErrors}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+<form method="post">
+  <div>
+    <input type="date" name="date" value="{{affirmation.date}}" />
+  </div>
+  <div>
+    <input type="text" name="note" value="{{affirmation.note}}" />
+  </div>
+  
+  <input type="submit" value="Update" />
+</form>

@@ -1,0 +1,20 @@
+<h2>Daily affirmation</h2>
+<h3>Every moring you can check for a new quote from me!</h3>
+
+{{#if affirmations.length}}
+        <p>We have quotes {{affirmations.length}}</p>
+
+        <ul>
+            {{#each affirmations}}
+                <li>
+                    <a href="/affirmations/{{id}}">{{date}}</a>
+    
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>We dont have any quotes yet</p>
+    {{/if}}
+{{#if isLoggedIn}}
+  <a href="/create-affirmation">Add new affirmation</a>
+{{/if}}

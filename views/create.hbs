@@ -1,0 +1,27 @@
+<h1 class="create-text">Create your new post here!</h1>
+
+{{#if errors.length}}
+  <p>Unable to create the post now because: </p>
+  <ul>
+    {{#each errors}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+
+<form action="" method="post">
+  <input type="text" placeholder="Title" name="title" value="{{title}}" />
+    <div class="form-group">
+    <label class="form-label" for="input-example-3" ></label>
+    <textarea
+      class="form-input"
+      id="input-example-3"
+      placeholder="Write your post here"
+      rows="10"
+      name="mainText"
+      value="{{mainText}}"
+    ></textarea>
+  </div>
+  <input type="submit" value="Post" class="btn-lg" />
+
+</form>
