@@ -1,12 +1,16 @@
 <h1>Update quote</h1>
+
 {{#if validationErrors.length}}
+<div class="toast toast-warning">
   <p>Can not update the quote because:</p>
   <ul>
     {{#each validationErrors}}
       <li>{{this}}</li>
     {{/each}}
   </ul>
+</div>
 {{/if}}
+
 <form method="post">
   <div>
     <input type="date" name="date" value="{{affirmation.date}}" />

@@ -540,8 +540,29 @@ app.get("/affirmations/:id", function (request, response) {
 });
 
 app.get("/create-affirmation", function (request, response) {
+  if (request.session.isLoggedIn) {
+    response.render("create-affirmation.hbs");
+  } else {
+    response.redirect("/login");
+  }
+
   response.render("create-affirmation.hbs");
 });
+
+
+
+/* 
+app.get("/create", function (request, response) {
+  if (request.session.isLoggedIn) {
+    response.render("create.hbs");
+  } else {
+    response.redirect("/login");
+  }
+
+  response.render("create.hbs");
+});
+*/ 
+
 
 function getValidationErrorsForAffirmations(date, note) {
   const validationErrors = [];
@@ -562,6 +583,10 @@ app.post("/create-affirmation", function (request, response) {
   const note = request.body.note;
 
   const errors = getValidationErrorsForAffirmations(date, note);
+
+  if (!request.session.isLoggedIn) {
+    errors.push("You must be logged in first!");
+  }
 
   if (errors.length == 0) {
     const query = `
