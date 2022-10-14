@@ -326,7 +326,6 @@ app.post("/login", function (request, response) {
         enteredPassword,
         enteredUsername,
       }
-      //display error message
       response.render("login.hbs", model);
     }
   }
