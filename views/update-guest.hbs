@@ -1,11 +1,13 @@
 <h1>Update post</h1>
 {{#if validationErrors.length}}
+<div class="toast toast-warning">
   <p>Can not update the post because:</p>
   <ul>
     {{#each validationErrors}}
       <li>{{this}}</li>
     {{/each}}
   </ul>
+</div>
 {{/if}}
 <form method="post">
   <div>
@@ -18,5 +20,5 @@
     <input type="text" name="message" value="{{guest.message}}" />
   </div>
   
-  <input type="submit" value="Update" />
+  <input type="submit" value="Update" class="btn btn-success"/>
 </form>

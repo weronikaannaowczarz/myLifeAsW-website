@@ -1,14 +1,14 @@
 <h2 class="guesttext">Sighn into a guest book here!</h2>
 <h3>Also leave me a message.</h3>
 {{#if errors.length}}
-
+<div class="toast toast-warning">
     <p>Can not create a new guest because:</p>
     <ul>
         {{#each errors }}
             <li>{{this}}</li>
         {{/each}}
     </ul>
-
+</div>
 {{/if}}
 <form action="" method="post">
   <input type="text" placeholder="Name" name="name" value="{{name}}" />

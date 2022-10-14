@@ -1,14 +1,14 @@
 <h2>Create new affirmation</h2>
 
 {{#if errors.length}}
-
+<div class="toast toast-warning">
     <p>Can not create a new affirmation because:</p>
     <ul>
         {{#each errors }}
             <li>{{this}}</li>
         {{/each}}
     </ul>
-
+</div>
 {{/if}}
 <form action="" method="post">
   <input type="date" placeholder="Date" name="date" value="{{date}}" />

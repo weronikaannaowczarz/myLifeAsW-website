@@ -1,12 +1,14 @@
 <h1 class="create-text">Create your new post here!</h1>
 
 {{#if errors.length}}
+<div class="toast toast-warning">
   <p>Unable to create the post now because: </p>
   <ul>
     {{#each errors}}
       <li>{{this}}</li>
     {{/each}}
   </ul>
+</div>
 {{/if}}
 
 <form action="" method="post">
@@ -22,6 +24,6 @@
       value="{{mainText}}"
     ></textarea>
   </div>
-  <input type="submit" value="Post" class="btn-lg" />
+  <input type="submit" value="Post"  class="btn btn-success" />
 
 </form>

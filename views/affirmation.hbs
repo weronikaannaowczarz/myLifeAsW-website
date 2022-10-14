@@ -9,13 +9,13 @@
 
 {{#if isLoggedIn}}
   <div>
-    <a href="/update-affirmation/{{affirmation.id}}">Update</a>
+    <a href="/update-affirmation/{{affirmation.id}}" class="btn btn-success">Update</a>
   </div>
 {{/if}}
 {{#if isLoggedIn}}
   <div>
     <form action="/delete-affirmation/{{affirmation.id}}" method="post">
-      <input type="submit" value="Delete" />
+      <input type="submit" value="Delete" class="btn btn-error" />
     </form>
   </div>
 {{/if}}

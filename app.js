@@ -3,6 +3,9 @@ const expressHandlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3");
 const expressSession = require("express-session");
+const connectSqlite3 = require('connect-sqlite3') 
+const SQLiteStore = connectSqlite3(expressSession)
+const bcrypt = require("bcrypt")
 
 const minTitleLength = 1;
 const minTextLength = 19;
@@ -47,11 +50,12 @@ app.use(
     secret: "bfacgoeuygf",
     saveUninitialized: false,
     resave: false,
+    store: new SQLiteStore()
   })
 );
 
 const correctUsername = "weronika";
-const correctPassword = "weronika2305";
+const correctPassword = "$2b$10$NJYFgAKxh/U56cSRO70RcuntIMxSzUXPtatRncKTXBHSn/..buNna";
 
 app.use(express.static("public"));
 
@@ -112,7 +116,6 @@ app.get("/create", function (request, response) {
     response.redirect("/login");
   }
 
-  response.render("create.hbs");
 });
 
 function getValidationErrorsForPost(title, mainText) {
@@ -278,22 +281,56 @@ app.get("/login", function (request, response) {
   response.render("login.hbs");
 });
 
+
+function getValidationErrorsForLogin(enteredPassword, enteredUsername){
+  const validationErrors=[]
+
+  if (enteredPassword.length == 0){
+    validationErrors.push(
+      "Enter Password!"
+    )
+  }
+  if (enteredUsername.length == 0){
+    validationErrors.push(
+      "Enter username!"
+    )
+  }
+  return validationErrors
+}
+
 app.post("/login", function (request, response) {
   const enteredUsername = request.body.username;
   const enteredPassword = request.body.password;
 
-  if (
-    enteredUsername == correctUsername &&
-    enteredPassword == correctPassword
-  ) {
-    //Login
+  const errors = getValidationErrorsForLogin(enteredPassword, enteredUsername)
+  const isValid = bcrypt.compareSync(enteredPassword, correctPassword)
+  
+  if (errors.length == 0){
+    if (
+      enteredUsername == correctUsername &&
+      isValid
+    ) {
+      //Login
 
-    request.session.isLoggedIn = true;
-    response.redirect("/");
-  } else {
-    //display error message
-    response.redirect("/posts");
+      request.session.isLoggedIn = true;
+      response.redirect("/");
+    } else {
+      if(enteredUsername != correctUsername) {
+        errors.push("Incorrect username!")
+      }
+      if(isValid == false){
+        errors.push("Incorrect password!")
+      }
+      const model ={
+        errors, 
+        enteredPassword,
+        enteredUsername,
+      }
+      //display error message
+      response.render("login.hbs", model);
+    }
   }
+  
 });
 
 //log out page
@@ -481,7 +518,7 @@ app.post("/update-guest/:id", function (request, response) {
 
 //delete guest
 
-app.post("delete-guest/:id", function (request, response) {
+app.post("/delete-guest/:id", function (request, response) {
   const id = request.params.id;
   const query = "DELETE FROM guests WHERE id = ?";
   const values = [id];
@@ -545,23 +582,9 @@ app.get("/create-affirmation", function (request, response) {
   } else {
     response.redirect("/login");
   }
-
-  response.render("create-affirmation.hbs");
 });
 
 
-
-/* 
-app.get("/create", function (request, response) {
-  if (request.session.isLoggedIn) {
-    response.render("create.hbs");
-  } else {
-    response.redirect("/login");
-  }
-
-  response.render("create.hbs");
-});
-*/ 
 
 
 function getValidationErrorsForAffirmations(date, note) {
@@ -681,7 +704,7 @@ app.post("/update-affirmation/:id", function (request, response) {
 
 //delete affirmation/quotes
 
-app.post("delete-affirmation/:id", function (request, response) {
+app.post("/delete-affirmation/:id", function (request, response) {
   const id = request.params.id;
   const query = "DELETE FROM affirmation WHERE id =?";
   const values = [id];

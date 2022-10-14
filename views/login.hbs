@@ -1,5 +1,19 @@
 
+{{#if errors.length}}
+<div class="toast toast-warning">
+  <p>Unable to login now because: </p>
+  <ul>
+    {{#each errors}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+</div>
+{{/if}}
+
 <img src="/background-login.png" alt="background picture" class="login-picture" />
+
+
+
 <form action="" method="post"> 
     <div class="login-box">
     <input type="text" placeholder="Username" name="username">
