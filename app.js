@@ -85,7 +85,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/posts", function (request, response) {
-  const query = "SELECT * FROM posts ORDER BY id";
+  const query = "SELECT *  FROM posts ORDER BY id";
 
   db.all(query, function (error, posts) {
     if (error) {
@@ -155,7 +155,10 @@ app.post("/create", function (request, response) {
     db.run(query, values, function (error) {
       if (error) {
         console.log(error);
-        //Display error
+          const model = {
+            dbError:true
+          }
+          response.render("create.hbs", model)
       } else {
         response.redirect("/posts/" + this.lastID);
       }
@@ -165,6 +168,8 @@ app.post("/create", function (request, response) {
       errors,
       title,
       mainText,
+      dbError: false,
+      
     };
     response.render("create.hbs", model);
   }
@@ -182,10 +187,15 @@ app.get("/update-post/:id", function (request, response) {
     db.get(query, values, function (error, post) {
       if (error) {
         console.log(error);
-        //display error message.
+        const model = {
+          dbError: true
+        }
+        response.render("update-post.hbs", model);
       } else {
         const model = {
           post,
+          dbError: false,
+          
         };
         response.render("update-post.hbs", model);
       }
@@ -208,7 +218,7 @@ app.post("/update-post/:id", function (request, response) {
 
   if (validationErrors.length == 0) {
     const query = `
-        UPDATE
+        UPDATE 
           posts
         SET
           title = ?,
@@ -222,7 +232,10 @@ app.post("/update-post/:id", function (request, response) {
     db.run(query, values, function (error) {
       if (error) {
         console.log(error);
-        //Display error
+        const model={
+          dbError: true
+        }
+        response.render("update-post.hbs", model)
       } else {
         response.redirect("/posts/" + id);
       }
@@ -233,6 +246,8 @@ app.post("/update-post/:id", function (request, response) {
         id,
         title: newTitle,
         mainText: newMainText,
+        dbError:false,
+        
       },
       validationErrors,
     };
@@ -250,8 +265,12 @@ app.post("/delete-post/:id", function (request, response) {
   db.run(query, values, function (error) {
     if (error) {
       console.log(error);
-      //display error
+      const model = {
+        dbError:true
+      }
+      response.render("post.hbs", model)
     } else {
+      
       response.redirect("/posts");
     }
   });
@@ -265,10 +284,16 @@ app.get("/posts/:id", function (request, response) {
   db.get(query, values, function (error, post) {
     if (error) {
       console.log(error);
-      //Dispplay error
+      const model = {
+        dbError: true
+      }
+      response.render("post.hbs", model)
     } else {
       const model = {
         post: post,
+        dbError: false
+        
+
       };
 
       response.render("post.hbs", model);
@@ -347,16 +372,16 @@ app.get("/guests", function (request, response) {
   db.all(query, function (error, guests) {
     if (error) {
       console.log(error);
-
-      const model = {
-        dbError: true,
-      };
-
-      response.render("guests.hbs", model);
+      const model ={
+        dbError: true
+      }
+      response.render("guests.hbs", model)
+      
     } else {
       const model = {
         guests,
         dbError: false,
+        
       };
       response.render("guests.hbs", model);
     }
@@ -372,10 +397,15 @@ app.get("/guests/:id", function (request, response) {
   db.get(query, values, function (error, guest) {
     if (error) {
       console.log(error);
-      //display error
+      const model ={
+        dbError: true
+      }
+      response.render("guest.hbs", model)
     } else {
       const model = {
         guest: guest,
+        dbError:false,
+        
       };
       response.render("guest.hbs", model);
     }
@@ -424,7 +454,10 @@ app.post("/create-guest", function (request, response) {
     db.run(query, values, function (error) {
       if (error) {
         console.log(error);
-        //Display error
+        const model = {
+          dbError: true
+        }
+        response.render("create-guest.hbs", model)
       } else {
         response.redirect("/guests/" + this.lastID);
       }
@@ -435,6 +468,8 @@ app.post("/create-guest", function (request, response) {
       name,
       surname,
       message,
+      dbError:false,
+      
     };
     response.render("create-guest.hbs", model);
   }
@@ -451,10 +486,15 @@ app.get("/update-guest/:id", function (request, response) {
     db.get(query, values, function (error, guest) {
       if (error) {
         console.log(error);
-        //dispaly error
+        const model = {
+          dbError:true
+        }
+        response.render("update-guest.hbs", model)
       } else {
         const model = {
           guest,
+          dbError:false,
+          
         };
         response.render("update-guest.hbs", model);
       }
@@ -482,7 +522,7 @@ app.post("/update-guest/:id", function (request, response) {
 
   if (validationErrors.length == 0) {
     const query = `
-    UPDATE
+    UPDATE 
       guests
     SET
       name = ?,
@@ -496,7 +536,10 @@ app.post("/update-guest/:id", function (request, response) {
     db.run(query, values, function (error) {
       if (error) {
         console.log(error);
-        //dispaly error
+        const model = {
+          dbError: true
+        }
+        response.render("update-guest.hbs", model)
       } else {
         response.redirect("/guests/" + id);
       }
@@ -508,6 +551,7 @@ app.post("/update-guest/:id", function (request, response) {
         name: newName,
         surname: newSurname,
         message: newMessage,
+        dbError:false
       },
       validationErrors,
     };
@@ -525,7 +569,10 @@ app.post("/delete-guest/:id", function (request, response) {
   db.run(query, values, function (error) {
     if (error) {
       console.log(error);
-      //display error
+      const model ={
+        dbError:true
+      }
+      response.render("guest.hbs", model)
     } else {
       response.redirect("/guests");
     }
@@ -540,16 +587,15 @@ app.get("/affirmations", function (request, response) {
   db.all(query, function (error, affirmations) {
     if (error) {
       console.log(error);
-
       const model = {
-        dbError: true,
-      };
-
-      response.render("affirmations.hbs", model);
+        dbError:true
+      }
+      response.render("affirmations.hbs", model)
     } else {
       const model = {
         affirmations,
-        dbError: false,
+        dbError:false,
+        
       };
       response.render("affirmations.hbs", model);
     }
@@ -565,10 +611,15 @@ app.get("/affirmations/:id", function (request, response) {
   db.get(query, values, function (error, affirmation) {
     if (error) {
       console.log(error);
-      //display error
+      const model={
+        dbError:true
+      }
+      response.render("affirmation.hbs", model)
     } else {
       const model = {
         affirmation: affirmation,
+        dbError:false
+        
       };
       response.render("affirmation.hbs", model);
     }
@@ -619,7 +670,10 @@ app.post("/create-affirmation", function (request, response) {
     db.run(query, values, function (error) {
       if (error) {
         console.log(error);
-        //display error
+        const model ={
+          dbError:true
+        }
+        response.render("create-affirmation.hbs", model)
       } else {
         response.redirect("/affirmations/" + this.lastID);
       }
@@ -629,6 +683,7 @@ app.post("/create-affirmation", function (request, response) {
       errors,
       date,
       note,
+      dbError: false,
     };
     response.render("create-affirmation.hbs", model);
   }
@@ -645,10 +700,15 @@ app.get("/update-affirmation/:id", function (request, response) {
     db.get(query, values, function (error, affirmation) {
       if (error) {
         console.log(error);
-        //display error
+        const model={
+          dbError:true
+        }
+        response.render("update-affirmation.hbs", model)
       } else {
         const model = {
           affirmation,
+          dbError:false,
+          
         };
         response.render("update-affirmation.hbs", model);
       }
@@ -670,7 +730,7 @@ app.post("/update-affirmation/:id", function (request, response) {
   }
   if (validationErrors.length == 0) {
     const query = `
-    UPDATE
+    UPDATE 
       affirmation
     SET
       date = ?,
@@ -683,7 +743,10 @@ app.post("/update-affirmation/:id", function (request, response) {
     db.run(query, values, function (error) {
       if (error) {
         console.log(error);
-        //display error
+        const model = {
+          dbError:true
+        }
+        response.render("update-affirmation.hbs", model)
       } else {
         response.redirect("/affirmations/" + id);
       }
@@ -694,6 +757,7 @@ app.post("/update-affirmation/:id", function (request, response) {
         id,
         date: newDate,
         note: newNote,
+        dbError:false,
       },
       validationErrors,
     };
@@ -711,7 +775,10 @@ app.post("/delete-affirmation/:id", function (request, response) {
   db.run(query, values, function (error) {
     if (error) {
       console.log(error);
-      //display error
+      const model ={
+        dbError:true
+      }
+      response.render("affirmation.hbs", model)
     } else {
       response.redirect("/affirmations");
     }

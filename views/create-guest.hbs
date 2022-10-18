@@ -1,19 +1,26 @@
 <h2 class="guesttext">Sighn into a guest book here!</h2>
 <h3>Also leave me a message.</h3>
-{{#if errors.length}}
-<div class="toast toast-warning">
-    <p>Can not create a new guest because:</p>
-    <ul>
-        {{#each errors }}
-            <li>{{this}}</li>
-        {{/each}}
-    </ul>
-</div>
-{{/if}}
-<form action="" method="post">
-  <input type="text" placeholder="Name" name="name" value="{{name}}" />
-  <input type="text" placeholder="Surname" name="surname" value="{{surname}}"/>
-  <input type="text" placeholder="Your message" name="message" value="{{message}}"/>
-  <input type="submit" value="submit" />
 
-</form>
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
+
+    {{#if errors.length}}
+    <div class="toast toast-warning">
+        <p>Can not create a new guest because:</p>
+        <ul>
+            {{#each errors }}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/if}}
+
+    <form action="" method="post">
+    <input type="text" placeholder="Name" name="name" value="{{name}}" />
+    <input type="text" placeholder="Surname" name="surname" value="{{surname}}"/>
+    <input type="text" placeholder="Your message" name="message" value="{{message}}"/>
+    <input type="submit" value="submit" />
+
+    </form>
+{{/if}}

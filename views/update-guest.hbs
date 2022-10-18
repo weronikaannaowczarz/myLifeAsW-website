@@ -1,24 +1,32 @@
 <h1>Update post</h1>
-{{#if validationErrors.length}}
-<div class="toast toast-warning">
-  <p>Can not update the post because:</p>
-  <ul>
-    {{#each validationErrors}}
-      <li>{{this}}</li>
-    {{/each}}
-  </ul>
-</div>
+
+
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
+
+
+  {{#if validationErrors.length}}
+    <div class="toast toast-warning">
+      <p>Can not update the post because:</p>
+      <ul>
+        {{#each validationErrors}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+    <form method="post">
+      <div>
+        <input type="text" name="name" value="{{guest.name}}" />
+      </div>
+      <div>
+        <input type="text" name="surname" value="{{guest.surname}}" />
+      </div>
+      <div>
+        <input type="text" name="message" value="{{guest.message}}" />
+      </div>
+    
+        <input type="submit" value="Update" class="btn btn-success"/>
+    </form>
 {{/if}}
-<form method="post">
-  <div>
-    <input type="text" name="name" value="{{guest.name}}" />
-  </div>
-  <div>
-    <input type="text" name="surname" value="{{guest.surname}}" />
-  </div>
-  <div>
-    <input type="text" name="message" value="{{guest.message}}" />
-  </div>
-  
-  <input type="submit" value="Update" class="btn btn-success"/>
-</form>

@@ -1,20 +1,26 @@
 <h2>Daily affirmation</h2>
 <h3>Every moring you can check for a new quote from me!</h3>
 
-{{#if affirmations.length}}
-        <p>We have {{affirmations.length}} quotes </p>
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
 
-        <ul>
-            {{#each affirmations}}
-                <li>
-                    <a href="/affirmations/{{id}}">{{date}}</a>
-    
-                </li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p>We dont have any quotes yet</p>
+    {{#if affirmations.length}}
+            <p>We have {{affirmations.length}} quotes </p>
+
+            <ul>
+                {{#each affirmations}}
+                    <li>
+                        <a href="/affirmations/{{id}}">{{date}}</a>
+        
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>We dont have any quotes yet</p>
+        {{/if}}
+
+    {{#if isLoggedIn}}
+    <a href="/create-affirmation">Add new affirmation</a>
     {{/if}}
-{{#if isLoggedIn}}
-  <a href="/create-affirmation">Add new affirmation</a>
 {{/if}}

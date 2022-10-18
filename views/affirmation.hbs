@@ -1,21 +1,25 @@
 <h1>Todays affirmation</h1>
 
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
 
-<div>Date: {{affirmation.date}}</div>
-<div>
-  Note:
-  {{affirmation.note}}
-</div>
+  <div>Date: {{affirmation.date}}</div>
+  <div>
+    Note:
+    {{affirmation.note}}
+  </div>
 
-{{#if isLoggedIn}}
-  <div>
-    <a href="/update-affirmation/{{affirmation.id}}" class="btn btn-success">Update</a>
-  </div>
-{{/if}}
-{{#if isLoggedIn}}
-  <div>
-    <form action="/delete-affirmation/{{affirmation.id}}" method="post">
-      <input type="submit" value="Delete" class="btn btn-error" />
-    </form>
-  </div>
+  {{#if isLoggedIn}}
+    <div>
+      <a href="/update-affirmation/{{affirmation.id}}" class="btn btn-success">Update</a>
+    </div>
+  {{/if}}
+  {{#if isLoggedIn}}
+    <div>
+      <form action="/delete-affirmation/{{affirmation.id}}" method="post">
+        <input type="submit" value="Delete" class="btn btn-error" />
+      </form>
+    </div>
+  {{/if}}
 {{/if}}

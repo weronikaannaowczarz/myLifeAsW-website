@@ -1,20 +1,25 @@
 <h1>POST</h1>
 
-<div>
-    Title: {{post.title}}
-</div>
-<div>
-    Text: {{post.mainText}}
-</div> 
-{{#if isLoggedIn}}
-<div>
-    <a href="/update-post/{{post.id}}" class="btn btn-success">Update</a>
-</div>
-{{/if}}
-{{#if isLoggedIn}}
-<div>
-    <form action="/delete-post/{{post.id}}" method="post">
-        <input type="submit" value="Delete" class="btn btn-error">
-    </form>
-</div>
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
+
+    <div>
+        Title: {{post.title}}
+    </div>
+    <div>
+        Text: {{post.mainText}}
+    </div> 
+    {{#if isLoggedIn}}
+        <div>
+            <a href="/update-post/{{post.id}}" class="btn btn-success">Update</a>
+        </div>
+    {{/if}}
+    {{#if isLoggedIn}}
+        <div>
+            <form action="/delete-post/{{post.id}}" method="post">
+                <input type="submit" value="Delete" class="btn btn-error">
+            </form>
+        </div>
+    {{/if}}
 {{/if}}

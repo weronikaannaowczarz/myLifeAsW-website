@@ -1,18 +1,23 @@
 <h1>Guest</h1>
 
-<div>Name: {{guest.name}}</div>
-<div>Surname: {{guest.surname}}</div>
-<div>Message: {{guest.message}}</div>
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
 
-{{#if isLoggedIn}}
-<div>
-    <a href="/update-guest/{{guest.id}}" class="btn btn-success">Update</a>
-</div>
-{{/if}}
-{{#if isLoggedIn}}
-<div>
-    <form action="/delete-guest/{{guest.id}}" method="post">
-        <input type="submit" value="Delete" class="btn btn-error">
-    </form>
-</div>
+    <div>Name: {{guest.name}}</div>
+    <div>Surname: {{guest.surname}}</div>
+    <div>Message: {{guest.message}}</div>
+
+    {{#if isLoggedIn}}
+        <div>
+            <a href="/update-guest/{{guest.id}}" class="btn btn-success">Update</a>
+        </div>
+    {{/if}}
+    {{#if isLoggedIn}}
+        <div>
+            <form action="/delete-guest/{{guest.id}}" method="post">
+                <input type="submit" value="Delete" class="btn btn-error">
+            </form>
+        </div>
+    {{/if}}
 {{/if}}

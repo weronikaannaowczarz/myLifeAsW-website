@@ -1,17 +1,21 @@
 <h1 class="create-text">Create your new post here!</h1>
 
-{{#if errors.length}}
-<div class="toast toast-warning">
-  <p>Unable to create the post now because: </p>
-  <ul>
-    {{#each errors}}
-      <li>{{this}}</li>
-    {{/each}}
-  </ul>
-</div>
-{{/if}}
+{{#if dbError}}
+    <p>Can not display this page now. We are working to fix this problem.</p>
+{{else}}
 
-<form action="" method="post">
+  {{#if errors.length}}
+    <div class="toast toast-warning">
+    <p>Unable to create the post now because: </p>
+      <ul>
+        {{#each errors}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+  <form action="" method="post">
   <input type="text" placeholder="Title" name="title" value="{{title}}" />
     <div class="form-group">
     <label class="form-label" for="input-example-3" ></label>
@@ -26,4 +30,5 @@
   </div>
   <input type="submit" value="Post"  class="btn btn-success" />
 
-</form>
+  </form>
+{{/if}}
