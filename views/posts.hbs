@@ -1,7 +1,7 @@
 <h1>Posts</h1>
 
 {{#if dbError}}
-    <p>Can not display this page now. We are working to fix this problem.</p>
+    <p class="toast toast-error">Can not display this page now. We are working to fix this problem.</p>
 {{else}}
     {{#if posts.length}}
         <p>We have posts {{posts.length}}</p>

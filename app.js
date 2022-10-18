@@ -85,7 +85,7 @@ app.get("/", function (request, response) {
 });
 
 app.get("/posts", function (request, response) {
-  const query = "SELECT *  FROM posts ORDER BY id";
+  const query = "SELECT * FROM posts ORDER BY id";
 
   db.all(query, function (error, posts) {
     if (error) {
