@@ -8,16 +8,16 @@
     <div>Surname: {{guest.surname}}</div>
     <div>Message: {{guest.message}}</div>
 
-    {{#if isLoggedIn}}
-        <div>
-            <a href="/update-guest/{{guest.id}}" class="btn btn-success">Update</a>
-        </div>
-    {{/if}}
-    {{#if isLoggedIn}}
-        <div>
-            <form action="/delete-guest/{{guest.id}}" method="post">
-                <input type="submit" value="Delete" class="btn btn-error">
-            </form>
-        </div>
-    {{/if}}
+        {{#if isLoggedIn}}
+            <div>
+                <a href="/update-guest/{{guest.id}}" class="btn btn-success">Update</a>
+            </div>
+        {{/if}}
+        {{#if isLoggedIn}}
+            <div>
+                <form action="/delete-guest/{{guest.id}}" method="post">
+                    <input type="submit" value="Delete" class="btn btn-error">
+                </form>
+            </div>
+        {{/if}}
 {{/if}}

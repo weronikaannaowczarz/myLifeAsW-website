@@ -6,28 +6,28 @@
 
   {{#if validationErrors.length}}
     <div class="toast toast-warning">
-    <p>Can not update the post because:</p>
-    <ul>
-      {{#each validationErrors}}
-        <li>{{this}}</li>
-      {{/each}}
-    </ul>
-  </div>
+      <p>Can not update the post because:</p>
+      <ul>
+        {{#each validationErrors}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
   {{/if}}
-  <form method="post">
-    <div>
-      <input type="text" name="title" value="{{post.title}}" />
-    </div>
-    <div class="form-group">
-      <label class="form-label" for="input-example-3"></label>
-      <textarea
-        class="form-input"
-        id="input-example-3"
-        placeholder="Write your post here"
-        rows="10"
-        name="mainText"
-      >{{post.mainText}}</textarea>
-    </div>
-    <input type="submit" value="Update" class="btn btn-success" />
-  </form>
+    <form method="post">
+      <div>
+        <input type="text" name="title" value="{{post.title}}" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="input-example-3"></label>
+        <textarea
+          class="form-input"
+          id="input-example-3"
+          placeholder="Write your post here"
+          rows="10"
+          name="mainText"
+        >{{post.mainText}}</textarea>
+      </div>
+      <input type="submit" value="Update" class="btn btn-success" />
+    </form>
 {{/if}}

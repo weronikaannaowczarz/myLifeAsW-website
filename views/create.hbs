@@ -6,29 +6,23 @@
 
   {{#if errors.length}}
     <div class="toast toast-warning">
-    <p>Unable to create the post now because: </p>
-      <ul>
-        {{#each errors}}
-          <li>{{this}}</li>
-        {{/each}}
-      </ul>
+      <p>Unable to create the post now because: </p>
+        <ul>
+          {{#each errors}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+    
     </div>
   {{/if}}
 
   <form action="" method="post">
-  <input type="text" placeholder="Title" name="title" value="{{title}}" />
-    <div class="form-group">
-    <label class="form-label" for="input-example-3" ></label>
-    <textarea
-      class="form-input"
-      id="input-example-3"
-      placeholder="Write your post here"
-      rows="10"
-      name="mainText"
-      value="{{mainText}}"
-    ></textarea>
-  </div>
-  <input type="submit" value="Post"  class="btn btn-success" />
+    <input type="text" placeholder="Title" name="title" value="{{title}}" />
+      <div class="form-group">
+        <label class="form-label" for="input-example-3" ></label>
+        <textarea class="form-input" id="input-example-3" placeholder="Write your post here" rows="10" name="mainText" value="{{mainText}}"></textarea>
+      </div>
+    <input type="submit" value="Post"  class="btn btn-success" />
 
   </form>
 {{/if}}

@@ -6,21 +6,21 @@
 {{else}}
 
     {{#if errors.length}}
-    <div class="toast toast-warning">
-        <p>Can not create a new guest because:</p>
-        <ul>
-            {{#each errors }}
-                <li>{{this}}</li>
-            {{/each}}
-        </ul>
-    </div>
+        <div class="toast toast-warning">
+            <p>Can not create a new guest because:</p>
+            <ul>
+                {{#each errors }}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
     {{/if}}
 
     <form action="" method="post">
-    <input type="text" placeholder="Name" name="name" value="{{name}}" />
-    <input type="text" placeholder="Surname" name="surname" value="{{surname}}"/>
-    <input type="text" placeholder="Your message" name="message" value="{{message}}"/>
-    <input type="submit" value="submit" />
+        <input type="text" placeholder="Name" name="name" value="{{name}}" />
+        <input type="text" placeholder="Surname" name="surname" value="{{surname}}"/>
+        <input type="text" placeholder="Your message" name="message" value="{{message}}"/>
+        <input type="submit" value="submit" />
 
     </form>
 {{/if}}
